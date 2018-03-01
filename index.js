@@ -16,4 +16,8 @@ app.post('/api', upload.single('file'), (req, res) => res.json({
     size: req.file.size
 }));
 
-app.listen(app.get('port'), () => console.log(`/file-metadata listening on ${app.get('port')}`));
+if (process.env.SINGLE) {
+    app.listen(app.get('port'), () => console.log(`/file-metadata listening on ${app.get('port')}`));
+} else {
+    module.exports = app;
+}
